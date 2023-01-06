@@ -1,33 +1,35 @@
+import React, { useState } from 'react';
+
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
-function App(){
-  const expenses = [
-    {
-      id: 'e1',
-      title: 'Toilet Paper',
-      amount: 94.12,
-      date: new Date(2020, 7, 14),
-    },
-    { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
-    {
-      id: 'e3',
-      title: 'Car Insurance',
-      amount: 294.67,
-      date: new Date(2021, 2, 28),
-    },
-    {
-      id: 'e4',
-      title: 'New Desk (Wooden)',
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
-  ];
+const DUMMY_EXPENSES = [
+  {
+    id: 'e1',
+    title: 'Costa Rica Trip',
+    amount: 4000,
+    date: new Date(2023, 2, 18),
+  },
+  {
+    id: 'e3',
+    title: 'Mixico Trip',
+    amount: 2500,
+    date: new Date(2023, 5, 14),
+  },
+];
 
+function App(){
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+
+//updating state based on an older snapshot of that same state
+//dynamically updates our list when items are added
   const addExpenseHandler = expense => {
-    console.log("in App.js")
-    console.log(expense)
-  }
+    setExpenses(prevExpenses => {
+      return [expense, ...prevExpenses]
+    })
+    // console.log("in App.js")
+    // console.log(expense)
+  };
 
   return(
     <div>
