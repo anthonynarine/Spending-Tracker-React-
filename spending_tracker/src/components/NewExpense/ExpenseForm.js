@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./ExpenseForm.css";
 
-function ExpenseForm() {
+function ExpenseForm({ onSaveExpenseData }) {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
@@ -32,10 +32,11 @@ function ExpenseForm() {
     };
 
     console.log(expenseData);
-    //func sets below clears the form by setting state to an empty string
+    onSaveExpenseData(expenseData)
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
+    //above clears the form by setting state to an empty string
   };
   //End of fomr submit 
 
